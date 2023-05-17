@@ -1,0 +1,38 @@
+package main
+
+import "fmt"
+
+type Pessoa struct {
+	nome     string
+	idade    int
+	Endereco Endereco
+}
+type Endereco struct {
+	rua    string
+	numero int
+	cidade string
+	estado string
+}
+
+func pessoaLoc(pessoa Pessoa) {
+	fmt.Println("Endereço completo:")
+	fmt.Println("RUA: ", pessoa.Endereco.rua)
+	fmt.Println("NÚMERO: ", pessoa.Endereco.numero)
+	fmt.Println("CIDADE: ", pessoa.Endereco.cidade)
+	fmt.Println("ESTADO: ", pessoa.Endereco.estado)
+
+}
+func main() {
+	endereco := Endereco{
+		rua:    "GETULIO VARGAS",
+		numero: 2,
+		cidade: "SÃO PAULO",
+		estado: "SÃO PAULO",
+	}
+	pessoa := Pessoa{
+		nome:     "EVANDRO",
+		idade:    55,
+		Endereco: endereco,
+	}
+	pessoaLoc(pessoa)
+}
