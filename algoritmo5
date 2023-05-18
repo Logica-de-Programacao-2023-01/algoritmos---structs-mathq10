@@ -1,0 +1,27 @@
+package main
+
+import (
+	"time"
+)
+
+type Playlist struct {
+	nome   string
+	musica []Musica
+}
+type Musica struct {
+	titulo  string
+	artista string
+	duracao time.Duration
+}
+
+func econctrarPlaylist(titulo string, playlist []Playlist) []Playlist {
+	var resultado []Playlist
+	for _, rs := range playlist {
+		for _, rs2 := range rs.musica {
+			if rs2.titulo == titulo {
+				resultado = append(resultado, rs)
+			}
+		}
+	}
+	return resultado
+}
