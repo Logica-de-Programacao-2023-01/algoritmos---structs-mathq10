@@ -1,0 +1,45 @@
+package main
+
+import (
+	"fmt"
+	"time"
+)
+
+type Funcionarios struct {
+	nome    string
+	salario float64
+	idade   int
+}
+
+func aumentarSalario(f *Funcionarios, percentual float64) {
+
+	f.salario += f.salario * (percentual / 100)
+
+}
+func diminuirSalario(f *Funcionarios, percentual float64) {
+
+	f.salario -= f.salario * (percentual / 100)
+
+}
+func (f *Funcionarios) tempoServico() int {
+	idadeIncial := 18
+	idadeAtual := time.Now().Year() - f.idade
+	tempoS := idadeAtual - idadeIncial
+	return tempoS
+}
+func main() {
+	f := Funcionarios{
+		nome:    "ROGERIO",
+		salario: 1500.00,
+		idade:   24,
+	}
+	fmt.Println("salario antes do aumento: ", f.salario)
+	aumentarSalario(&f, 200.00)
+	fmt.Println("salario depois do aumento: \n", f.salario)
+	fmt.Println("salario antes da diminuição: ", f.salario)
+	diminuirSalario(&f, 200.00)
+	fmt.Println("salario depois da diminuição: \n", f.salario)
+	resultado := f.tempoServico()
+	fmt.Println(resultado)
+
+}
