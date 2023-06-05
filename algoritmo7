@@ -1,0 +1,37 @@
+package main
+
+import "fmt"
+
+type Animal struct {
+	nome    string
+	especie string
+	idade   int
+	som     string
+}
+
+func (animal *Animal) modifica(Nvsom string) {
+	animal.som = Nvsom
+}
+func (animal *Animal) info() {
+	fmt.Println("Informações do animal:")
+	fmt.Println("Nome: ", animal.nome)
+	fmt.Println("Especie: ", animal.especie)
+	fmt.Println("Idade: ", animal.idade)
+	fmt.Println("Som: ", animal.som)
+
+}
+
+func main() {
+	a := Animal{
+		nome:    "Macaco",
+		especie: "Primata",
+		idade:   12,
+		som:     "zoa",
+	}
+	a.info()
+	somAntes := a.som
+
+	a.modifica("late")
+	fmt.Printf("antes ele %s, agora ele %s", somAntes, a.som)
+
+}
