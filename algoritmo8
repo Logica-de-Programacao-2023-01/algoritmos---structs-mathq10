@@ -1,0 +1,21 @@
+package main
+
+type Viagem struct {
+	origem  string
+	destino string
+	data    string
+	preco   float64
+}
+
+func maisCara(viagem []Viagem) Viagem {
+	if len(viagem) == 0 {
+		return Viagem{}
+	}
+	viagemMaisCara := viagem[0]
+	for _, rs := range viagem {
+		if rs.preco > viagemMaisCara.preco {
+			viagemMaisCara = rs
+		}
+	}
+	return viagemMaisCara
+}
