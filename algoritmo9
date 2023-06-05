@@ -1,0 +1,45 @@
+package main
+
+import "fmt"
+
+type Aluno struct {
+	nome  string
+	idade int
+	notas []float64
+}
+
+func (aluno *Aluno) adicionar(nota float64) {
+	aluno.notas = append(aluno.notas, nota)
+}
+func (aluno *Aluno) remover(indice int) {
+	if indice >= 0 && indice < len(aluno.notas) {
+		aluno.notas = append(aluno.notas[:indice], aluno.notas[indice+1:]...)
+	}
+}
+func (aluno *Aluno) media() float64 {
+	var total float64
+	for _, rs := range aluno.notas {
+		total += rs
+
+	}
+	return total / float64(len(aluno.notas))
+}
+func (aluno *Aluno) info() {
+	fmt.Println("Nome: ", aluno.nome)
+	fmt.Println("Idade: ", aluno.idade)
+	fmt.Println("Média: ", aluno.media())
+}
+func main() {
+	a := Aluno{
+		nome:  "Matheus",
+		idade: 17,
+		notas: []float64{10.00, 9.00, 8.00, 9.00, 9.00},
+	}
+	a.info()
+	a.adicionar(1.00)
+	fmt.Println(a.notas)
+	a.remover(3)
+	fmt.Println(a.notas)
+	a.media()
+	a.info()
+}
