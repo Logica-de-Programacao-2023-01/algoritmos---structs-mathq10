@@ -1,0 +1,47 @@
+package main
+
+import "fmt"
+
+type Filme struct {
+	titulo    string
+	diretor   string
+	ano       int
+	avaliacao []float64
+}
+
+func (filme *Filme) adicionar(avaliacao float64) {
+	filme.avaliacao = append(filme.avaliacao, avaliacao)
+}
+func (filme *Filme) remover(indice int) {
+	if indice >= 0 && indice < len(filme.avaliacao) {
+		filme.avaliacao = append(filme.avaliacao[:indice], filme.avaliacao[indice+1:]...)
+	}
+}
+func (filme *Filme) media() float64 {
+	var total float64
+	for _, rs := range filme.avaliacao {
+		total += rs
+
+	}
+	return total / float64(len(filme.avaliacao))
+}
+func (filme *Filme) info() {
+	fmt.Println("titulo: ", filme.titulo)
+	fmt.Println("diretor: ", filme.diretor)
+	fmt.Println("ano: ", filme.ano)
+	fmt.Println("Média: ", filme.media())
+}
+func main() {
+	a := Filme{
+		titulo:    "DAVID",
+		diretor:   "DAVIDJR",
+		ano:       2045,
+		avaliacao: []float64{5.5, 6.6, 7, 8, 8, 10},
+	}
+	a.info()
+	a.adicionar(1)
+	fmt.Println(a.avaliacao)
+	a.remover(0)
+	fmt.Println(a.avaliacao)
+	a.info()
+}
